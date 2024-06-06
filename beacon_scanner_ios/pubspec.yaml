@@ -18,7 +18,8 @@ flutter:
 dependencies:
   flutter:
     sdk: flutter
-  beacon_scanner_platform_interface: ^0.0.3
+  beacon_scanner_platform_interface:
+    path: ../beacon_scanner_platform_interface
 
 dev_dependencies:
   flutter_test:
