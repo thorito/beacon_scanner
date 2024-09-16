@@ -4,8 +4,7 @@ repository: https://github.com/gfosmbh/beacon_scanner/tree/main/beacon_scanner_i
 version: 0.0.3+1
 
 environment:
-  sdk: ">=2.18.0 <4.0.0"
-  flutter: ">=3.3.0"
+  sdk: '>=3.3.5 <4.0.0'
 
 flutter:
   plugin:
@@ -21,6 +20,6 @@ dependencies:
   beacon_scanner_platform_interface:
     path: ../beacon_scanner_platform_interface
 
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
+dependency_overrides:
+  collection: ^1.19.0
+  material_color_utilities: ^0.12.0

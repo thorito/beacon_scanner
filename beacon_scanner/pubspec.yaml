@@ -6,8 +6,7 @@ issue_tracker: https://github.com/gfosmbh/beacon_scanner/issues?q=is%3Aissue+is%
 version: 0.0.5
 
 environment:
-  sdk: ">=2.18.0 <4.0.0"
-  flutter: ">=3.3.0"
+  sdk: '>=3.3.5 <4.0.0'
 
 flutter:
   plugin:
@@ -28,6 +27,8 @@ dependencies:
     path: ../beacon_scanner_platform_interface
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
   plugin_platform_interface: ^2.1.8
+
+dependency_overrides:
+  collection: ^1.19.0
+  material_color_utilities: ^0.12.0
