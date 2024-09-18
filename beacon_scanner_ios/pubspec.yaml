@@ -19,9 +19,7 @@ dependencies:
   flutter:
     sdk: flutter
   beacon_scanner_platform_interface:
-    git:
-      url: https://github.com/thorito/beacon_scanner_platform_interface.git
-    #path: ../beacon_scanner_platform_interface
+    path: ../beacon_scanner_platform_interface
 
 dependency_overrides:
   collection: ^1.19.0
