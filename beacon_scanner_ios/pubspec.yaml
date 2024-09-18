@@ -2,6 +2,7 @@ name: beacon_scanner_ios
 description: The iOS implementation of beacon_scanner_platform_interface
 repository: https://github.com/gfosmbh/beacon_scanner/tree/main/beacon_scanner_ios
 version: 0.0.3+1
+publish_to: 'none'
 
 environment:
   sdk: '>=3.3.5 <4.0.0'
