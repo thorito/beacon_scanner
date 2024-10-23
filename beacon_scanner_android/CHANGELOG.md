@@ -1,3 +1,11 @@
+## 0.0.6
+
+* Fixes accuracy: Infinity.
+
+## 0.0.5
+
+* Updated AltBeacon version to 2.20.6.
+
 ## 0.0.4
 
 * Fixes bluetoothStateChanged and initialize-call.

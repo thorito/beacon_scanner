@@ -3,11 +3,14 @@ import 'package:flutter/foundation.dart';
 import '../../beacon_scanner_platform_interface.dart';
 
 /// Enum for defining monitoring event type.
-enum MonitoringEventType { didEnterRegion, didExitRegion, didDetermineStateForRegion }
+enum MonitoringEventType {
+  didEnterRegion,
+  didExitRegion,
+  didDetermineStateForRegion
+}
 
 /// Enum for defining monitoring state
 enum MonitoringState { inside, outside, unknown }
-
 
 /// Class for managing monitoring result from scanning iBeacon process.
 @immutable
@@ -29,15 +32,18 @@ class MonitoringResult {
 
   /// Constructor for deserialize dynamic json into [MonitoringResult].
   factory MonitoringResult.fromJson(dynamic json) => MonitoringResult(
-        monitoringEventType: MonitoringEventType.values.firstWhere((e) => describeEnum(e) == json['event']),
-        monitoringState: MonitoringState.values.firstWhere((e) => describeEnum(e) == json['state'], orElse: () => MonitoringState.unknown),
+        monitoringEventType: MonitoringEventType.values
+            .firstWhere((e) => e.name == json['event']),
+        monitoringState: MonitoringState.values.firstWhere(
+            (e) => e.name == json['state'],
+            orElse: () => MonitoringState.unknown),
         region: Region.fromJson(json['region']),
       );
 
   /// Return the serializable of this object into [Map].
   Map<String, dynamic> toJson() => <String, dynamic>{
-    'event': describeEnum(monitoringEventType),
-    'region': region.toJson(),
-    'state': describeEnum(monitoringState),
-  };
+        'event': monitoringEventType.name,
+        'region': region.toJson(),
+        'state': monitoringState.name,
+      };
 }

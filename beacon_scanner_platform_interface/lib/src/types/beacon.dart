@@ -32,13 +32,15 @@ class Beacon {
   });
 
   factory Beacon.fromJson(dynamic json) => Beacon(
-    id: IBeaconId.fromJson(json),
-    macAddress: json['macAddress'] as String?,
-    rssi: json['rssi'] as int,
-    txPower: json['txPower'] as int?,
-    accuracy: json['accuracy'] as double,
-    proximity: Proximity.values.firstWhere((e) => describeEnum(e) == json['proximity'], orElse: () => Proximity.unknown),
-  );
+        id: IBeaconId.fromJson(json),
+        macAddress: json['macAddress'] as String?,
+        rssi: json['rssi'] as int,
+        txPower: json['txPower'] as int?,
+        accuracy: json['accuracy'] as double,
+        proximity: Proximity.values.firstWhere(
+            (e) => e.name == json['proximity'],
+            orElse: () => Proximity.unknown),
+      );
 
   /// Serialize current instance object into [Map].
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -47,13 +49,15 @@ class Beacon {
         'minor': id.minorId,
         'rssi': rssi,
         'accuracy': accuracy,
-        'proximity': describeEnum(proximity),
+        'proximity': proximity.name,
         'txPower': txPower,
         'macAddress': macAddress,
       };
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is Beacon && runtimeType == other.runtimeType && id == other.id;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Beacon && runtimeType == other.runtimeType && id == other.id;
 
   @override
   int get hashCode => id.hashCode;
