@@ -31,7 +31,11 @@ internal object BeaconScannerUtils {
         map["minor"] = beacon.id3.toInt()
         map["rssi"] = beacon.rssi
         map["txPower"] = beacon.txPower
-        map["accuracy"] = try { beacon.accuracy } catch (e: Exception) { 0f }
+        map["accuracy"] = try {
+            beacon.distance
+        } catch (e: Exception) {
+            0.0
+        }
         map["macAddress"] = beacon.bluetoothAddress
         map["proximity"] = rssiToProximity(beacon.rssi)
         return map
