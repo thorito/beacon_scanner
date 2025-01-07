@@ -22,5 +22,5 @@ dependencies:
     path: ../beacon_scanner_platform_interface
 
 dependency_overrides:
-  collection: ^1.19.0
+  collection: ^1.19.1
   material_color_utilities: ^0.12.0

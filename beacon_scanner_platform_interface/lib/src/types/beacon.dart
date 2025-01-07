@@ -10,6 +10,10 @@ class Beacon {
   /// The mac address of beacon
   final String? macAddress;
 
+  final String? name;
+
+  final String? identifier;
+
   /// The proximity of beacon
   final Proximity proximity;
 
@@ -29,10 +33,14 @@ class Beacon {
     this.macAddress,
     this.proximity = Proximity.unknown,
     this.txPower,
+    this.name,
+    this.identifier,
   });
 
   factory Beacon.fromJson(dynamic json) => Beacon(
         id: IBeaconId.fromJson(json),
+        identifier: json['identifier'] as String?,
+        name: json['name'] as String?,
         macAddress: json['macAddress'] as String?,
         rssi: json['rssi'] as int,
         txPower: json['txPower'] as int?,
@@ -45,6 +53,8 @@ class Beacon {
   /// Serialize current instance object into [Map].
   Map<String, dynamic> toJson() => <String, dynamic>{
         'proximityUUID': id.proximityUUID,
+        'identifier': identifier,
+        'name': name,
         'major': id.majorId,
         'minor': id.minorId,
         'rssi': rssi,
@@ -64,7 +74,7 @@ class Beacon {
 
   @override
   String toString() {
-    return 'Beacon{id: $id, macAddress: $macAddress, proximity: $proximity, rssi: $rssi, txPower: $txPower, accuracy: $accuracy}';
+    return 'Beacon{id: $id, name: $name, identifier: $identifier, macAddress: $macAddress, proximity: $proximity, rssi: $rssi, txPower: $txPower, accuracy: $accuracy}';
   }
 }
 
