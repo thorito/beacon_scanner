@@ -1,6 +1,5 @@
 package com.lukangagames.plugins.beaconscanner
 
-import android.util.Log
 import org.altbeacon.beacon.Beacon
 import org.altbeacon.beacon.Identifier
 import org.altbeacon.beacon.MonitorNotifier
@@ -25,10 +24,16 @@ internal object BeaconScannerUtils {
     }
 
     private fun beaconToMap(beacon: Beacon): Map<String, Any> {
+
+        val identifiers = beacon.identifiers
         val map: MutableMap<String, Any> = HashMap()
         map["proximityUUID"] = beacon.id1.toString().uppercase(Locale.getDefault())
-        map["major"] = beacon.id2.toInt()
-        map["minor"] = beacon.id3.toInt()
+        if (identifiers.size > 2) {
+            map["major"] = beacon.id2?.toInt() ?: 0
+            map["minor"] = beacon.id3?.toInt() ?: 0
+        } else {
+            map["id"] = beacon.id2.toString()
+        }
         map["rssi"] = beacon.rssi
         map["txPower"] = beacon.txPower
         map["accuracy"] = try {
@@ -38,6 +43,7 @@ internal object BeaconScannerUtils {
         }
         map["macAddress"] = beacon.bluetoothAddress
         map["proximity"] = rssiToProximity(beacon.rssi)
+
         return map
     }
 

@@ -31,6 +31,8 @@ class BeaconScannerPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Req
 
     private val iBeaconLayout = BeaconParser()
         .setBeaconLayout("m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24")
+    private val eddystoneUidLayout = BeaconParser()
+        .setBeaconLayout("s:0-1=feaa,m:2-2=00,p:3-3:-41,i:4-13,i:14-19")
 
     private var flutterPluginBinding: FlutterPluginBinding? = null
     private var activityPluginBinding: ActivityPluginBinding? = null
@@ -64,6 +66,7 @@ class BeaconScannerPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Req
         if (!beaconManager!!.beaconParsers.contains(iBeaconLayout)) {
             beaconManager?.beaconParsers?.clear()
             beaconManager?.beaconParsers?.add(iBeaconLayout)
+            beaconManager?.beaconParsers?.add(eddystoneUidLayout)
         }
         platform = FlutterPlatform(context)
         beaconScanner = BeaconScannerService(this, context)
