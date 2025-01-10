@@ -29,12 +29,12 @@ internal object BeaconScannerUtils {
         val identifiers = beacon.identifiers
         val map: MutableMap<String, Any> = HashMap()
         map["proximityUUID"] = beacon.id1.toString().uppercase(Locale.getDefault())
-        map["name"] = beacon.bluetoothName
+        map["name"] = beacon.bluetoothName ?: ""
         if (identifiers.size > 2) {
             map["major"] = beacon.id2?.toInt() ?: 0
             map["minor"] = beacon.id3?.toInt() ?: 0
         } else {
-            map["identifier"] = beacon.id2.toString()
+            map["identifier"] = beacon.id2?.toString() ?: ""
         }
         map["rssi"] = beacon.rssi
         map["txPower"] = beacon.txPower
@@ -45,7 +45,7 @@ internal object BeaconScannerUtils {
         }
         map["macAddress"] = beacon.bluetoothAddress
         map["proximity"] = rssiToProximity(beacon.rssi)
-        Log.d("Beacon", "Beacon : $map")
+
         return map
     }
 
