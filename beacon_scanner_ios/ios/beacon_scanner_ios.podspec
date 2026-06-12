@@ -13,9 +13,9 @@ A Flutter plugin for making the underlying platform (Android or iOS) scan for iB
   s.author           = { 'Lukangi' => 'lukanga.games@gmail.com' }
   s.source           = { :http => 'https://github.com/Lukangi/beacon_scanner/tree/main/beacon_scanner_ios' }
   s.documentation_url = 'https://pub.dev/packages/beacon_scanner_ios'
-  s.source_files = 'Classes/**/*'
-  s.public_header_files = 'Classes/**/*.h'
+  s.source_files = 'Classes/**/*.swift'
   s.dependency 'Flutter'
   s.platform = :ios, '13.0'
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
+  s.swift_version = '5.0'
 end
